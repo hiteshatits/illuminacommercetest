@@ -1,0 +1,73 @@
+@import "../common/00-settings/responsive-breakpoints.scss";
+@import "./address.scss";
+
+$msv-business-sign-up-button-margin-spacing: 20px;
+$msv-business-sign-up-input-spacing: 20px;
+
+[dir="rtl"] {
+    .ms-business-sign-up {
+        &__create-button {
+            margin-left: $msv-business-sign-up-button-margin-spacing;
+            margin-right: 0;
+        }
+
+        &__form-item {
+            margin-left: $msv-business-sign-up-input-spacing;
+            margin-right: 0;
+
+            &-CompanyEmail,
+            &-Department,
+            &-CompanySize {
+                margin-left: 0;
+            }
+
+            &.width-100 {
+                margin-left: 0;
+            }
+        }
+
+        .msc-address-select {
+            &__item {
+                .msc-address-detail {
+                    padding-left: $msv-address-select-item-address-detail-padding-left;
+                    padding-right: $msv-address-select-item-address-detail-padding-right;
+                }
+            }
+        }
+
+        .msc-address-form {
+            &__dropdown {
+                padding-right: $msv-address-dropdown-input-padding;
+            }
+
+            &__button-save {
+                margin-left: $msv-address-button-save-margin-left;
+            }
+        }
+
+        .ms-account-management-address {
+            .msc-address-detail {
+                &__item {
+                    margin-left: 5px;
+                }
+
+                &__item-phone {
+                    &::before {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        @media only screen and (max-width: $msv-breakpoint-l) {
+            &__form-item {
+                margin-left: 0;
+            }
+
+            &__create-button,
+            &__cancel-button {
+                margin-left: 0;
+            }
+        }
+    }
+}

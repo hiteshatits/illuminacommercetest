@@ -1,0 +1,27 @@
+
+@import "../common/00-settings/responsive-breakpoints.scss";
+
+$msv-address-checkbox-margin-right: 8px;
+$msv-address-detail-item-phone-margin-top: 3px;
+
+[dir="rtl"] {
+    .ms-checkout-billing-address {
+        &__shipping-address-checkbox-text {
+            margin-right: $msv-address-checkbox-margin-right;
+        }
+
+        .msc-address-detail {
+            &__item {
+                margin-right: 0;
+                margin-left: 5px;
+            }
+
+            &__item-phone::before {
+                margin-right: 0;
+                margin-left: 5px;
+                margin-top: $msv-address-detail-item-phone-margin-top;
+                float: right;
+            }
+        }
+    }
+}

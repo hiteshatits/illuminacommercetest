@@ -1,0 +1,396 @@
+@import "../common/00-settings/colors.scss";
+@import "../common/00-settings/icons.scss";
+@import "../common/00-settings/font.scss";
+@import "../common/02-generic/button.scss";
+@import "../common/00-settings/responsive-breakpoints.scss";
+@import "../common/01-tools/layout.scss";
+@import "../common/02-generic/image.scss";
+@import "../common/02-generic/reset.scss";
+@import "../common/01-tools/mixins.scss";
+@import "../common/01-tools/bootstrap.scss";
+
+$msv-comparison-accent-color: #6D6D6D;
+$msv-comparison-main-color: $msv-gray-100;
+$msv-comparison-secondary-color: $msv-white;
+$msv-comparison-remove-button-background-color: rgba(0, 0, 0, 0.41);
+
+:root {
+    --msv-comparison-btn-bg: #{$msv-white};
+    --msv-comparison-accent-color: #{$msv-comparison-accent-color};
+    --msv-comparison-main-color: #{$msv-comparison-main-color};
+    --msv-comparison-secondary-color: #{$msv-comparison-secondary-color};
+    --msv-comparison-remove-button-background-color: #{$msv-comparison-remove-button-background-color};
+}
+
+.msc-product-comparison {
+    @include font-body-regular-m();
+    margin-left: 60px;
+    margin-right: 60px;
+
+    @media (max-width: $msv-breakpoint-m) {
+        margin-left: unset;
+        margin-right: unset;
+    }
+
+    &__header {
+        @include font-heading-h1-l();
+        color: var(--msv-font-primary-color);
+        margin: 20px 0;
+    }
+
+    &__action-bar {
+        margin-bottom: 20px;
+
+        &__clear-all-button {
+            @include secondary-button(var(--msv-comparison-btn-bg));
+            @include vfi();
+        }
+
+        > button {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        @media only screen and (max-width: $msv-breakpoint-m) {
+            display: flex;
+            flex-direction: column;
+
+            button:not(:last-child) {
+                margin-bottom: 1.35rem;
+            }
+        }
+    }
+
+    &__main-container {
+        display: flex;
+        justify-content: center;
+
+        &__container {
+            border-radius: 5px;
+            margin: 20px;
+            max-width: 100%;
+
+            &__table {
+                border-spacing: 0;
+                display: inline-block;
+                max-width: 100%;
+
+                &__row {
+                    display: flex;
+                    width: fit-content;
+
+                    &__header-cell {
+                        vertical-align: top;
+                        text-align: left;
+                        padding: 20px;
+                        border-collapse: collapse;
+                        position: sticky;
+                        min-width: 315px;
+                        max-width: 315px;
+                        width: 315px;
+
+                        @media (max-width: $msv-breakpoint-m) {
+                            min-width: 156px;
+                            max-width: 156px;
+                            width: 156px;
+                        }
+                    }
+
+                    &__cell {
+                        min-width: 315px;
+                        max-width: 315px;
+                        width: 315px;
+                        padding: 20px;
+                        border-collapse: collapse;
+                        vertical-align: top;
+                        position: relative;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+
+                        .msc-rating {
+                            line-height: 20px;
+                        }
+
+                        @media (max-width: $msv-breakpoint-m) {
+                            min-width: 156px;
+                            max-width: 156px;
+                            width: 156px;
+                            font-size: 14px;
+                            line-height: 18px;
+
+                            .msc-rating__count, .msc-rating__group {
+                                font-size: 12px;
+                            }
+                        }
+
+                        &:last-child {
+                            border: none;
+                        }
+
+                        &.msc-product-comparison__cell-hover {
+                            background: $msv-white-20;
+                        }
+                    }
+                }
+
+                &__body {
+                    overflow: auto;
+
+                    .msc-product-comparison__main-container__container__table__row {
+                        display: flex;
+                        flex-direction: column;
+
+                        &-content {
+                            border-top: 0.5px solid $msv-gray-50;
+                            display: flex;
+                        }
+
+                        &__header-cell {
+                            @include font-heading-h3-l();
+                            padding: 50px 10px;
+                            position: sticky;
+                            left: 0;
+
+                            @media (max-width: $msv-breakpoint-m) {
+                                padding: 10px;
+                                font-size: 18px;
+                            }
+                        }
+                    }
+                }
+
+                &__header {
+                    top: 0;
+                    position: sticky;
+                    z-index: 4;
+                    overflow: hidden;
+                    box-shadow: $msv-depth8;
+
+                    @media (max-width: $msv-breakpoint-m) {
+                        position: unset;
+                        top: unset;
+                    }
+
+                    &__product-row {
+                        background-color: $msv-white;
+
+                        &__product-name {
+                            @include font-heading-h5-l();
+                            font-weight: bold;
+                            margin: 10px;
+                            text-align: center;
+
+                            @media (max-width: $msv-breakpoint-m) {
+                                font-size: 16px;
+                                line-height: 20px;
+                                margin: 10px;
+                            }
+                        }
+
+                        &__product-price {
+                            display: flex;
+
+                            .msc-price {
+                                margin-right: auto;
+                                margin-left: auto;
+
+                                @include font-body-regular-m();
+                            }
+                        }
+
+                        &__product-image-container {
+                            display: block;
+                            margin-left: auto;
+                            margin-right: auto;
+                            margin-top: 10px;
+                            width: fit-content;
+
+                            @include image(275px, 205px);
+
+                            @media (max-width: $msv-breakpoint-m) {
+                                @include image(116px, 80px);
+                            }
+                        }
+
+                        &__actions {
+                            padding-top: 10px;
+
+                            a, button {
+                                @include secondary-button();
+                                font-weight: initial;
+                                cursor: pointer;
+                                padding: 12px;
+
+                                @media (max-width: $msv-breakpoint-m) {
+                                    min-width: unset;
+                                    padding: 12px;
+                                    font-size: 12px;
+                                    height: auto;
+                                    text-align: center;
+                                    line-height: 14px;
+                                }
+                            }
+                        }
+
+                        &__remove {
+                            display: none;
+
+                            @include vfi();
+                            @include add-icon($msv-Cancel);
+                            border: 1px solid transparent;
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            cursor: pointer;
+                            margin: 8px;
+                            background: var(--msv-comparison-remove-button-background-color);
+                            color: $msv-white;
+                            border-radius: 4px;
+                            width: 48px;
+                            height: 48px;
+                            z-index: 10;
+                            font-size: 24px;
+
+                            &::before {
+                                margin-top: 4px;
+                            }
+                        }
+                    }
+
+                    .msc-product-comparison__main-container__container__table__row__header-cell {
+                        top: 0;
+                        z-index: 2;
+                        display: flex;
+                        align-items: center;
+                        flex-direction: column;
+
+                        &.msc-product-comparison__cell-hover {
+                            box-shadow: $msv-depth8;
+
+                            .msc-product-comparison__main-container__container__table__header__product-row__remove {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+
+                &__clicker {
+                    align-items: center;
+                    color: var(--msv-comparison-accent-color);
+                    background-color: var(--msv-comparison-secondary-color);
+                    border: 1px solid var(--msv-comparison-accent-color);
+                    display: flex;
+                    height: 48px;
+                    width: 48px;
+                    justify-content: center;
+                    position: fixed;
+                    text-align: center;
+                    transition: none;
+                    z-index: 16;
+                    top: 50%;
+                    font-size: 24px;
+                    cursor: pointer;
+
+                    @media (max-width: $msv-breakpoint-m) {
+                        display: none;
+                    }
+
+                    @include hover-focus {
+                        outline: none;
+                        text-decoration: none;
+                        background-color: var(--msv-comparison-accent-color);
+                        border: 1px solid var(--msv-comparison-secondary-color);
+
+                        .msc-product-comparison__main-container__container__table__clicker__previous__icon,
+                        .msc-product-comparison__main-container__container__table__clicker__next__icon {
+                            color: var(--msv-comparison-secondary-color);
+                        }
+                    }
+
+                    &::before {
+                        bottom: 0;
+                        content: "";
+                        display: block;
+                        left: 0;
+                        outline-offset: 1px;
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                    }
+
+                    &__previous {
+                        border-radius: 50%;
+                        justify-content: flex-start;
+                        left: 20px;
+
+                        &__icon {
+                            @include add-icon($msv-ChevronLeft);
+                            margin: 4px;
+                            margin-top: 8px;
+                        }
+                    }
+
+                    &__next {
+                        border-radius: 50%;
+                        justify-content: flex-end;
+                        right: 20px;
+
+                        &__icon {
+                            @include add-icon($msv-ChevronRight);
+                            margin: 4px;
+                            margin-top: 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &__empty-container {
+        border: 0.5px solid $msv-gray-50;
+        border-radius: 10px;
+        margin: 58px 40px 0;
+        width: 100%;
+        display: block;
+        color: $msv-gray-20;
+        text-align: center;
+
+        .ms-content-block {
+            .ms-content-block__details {
+                .ms-content-block__title {
+                    @include font-heading-h2-l();
+                    padding: 75px 0 0;
+                    max-width: 350px;
+                    margin: auto;
+                }
+
+                .ms-content-block__text {
+                    margin-top: 44px;
+
+                    @include font-body-regular-s();
+                }
+
+                .ms-content-block__cta {
+                    margin-top: 64px;
+                    margin-bottom: 102px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    padding-left: 86px;
+
+                    a {
+                        @include feature-link-light-m();
+                        margin-right: 68px;
+                        letter-spacing: normal;
+
+                        &::before {
+                            background-color: $msv-blue-80;
+                            border-radius: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
